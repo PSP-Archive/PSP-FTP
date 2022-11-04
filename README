@@ -1,0 +1,29 @@
+PSP FTP Client
+by: LiQuiD8d
+contact me at: liquid8d@hotmail.com
+v .99
+10/09/05
+ 
+A basic ftp client for the PSP. Began working on this in August, 2005. By August 23, I was able to successfully transfer a file via ftp to the psp. I just started learning C about a month earlier, and played around with some of the sdk samples. When I saw the ftp server, I knew a client was needed, mainly as I wanted to do PSP 2 PSP transfers. My original and eventual goal is to create a file sharing program, to make it easy to transfer files back and forth without a USB cable.
+
+My intent with this is more to make the functions available for other programs to access ftp as opposed to a full out ftp client, but I at least have working standalone functionality available for standard use.
+
+Usage: 
+
+When entering text, use Up/Down to change characters, and Left/Right to adjust, and X to confirm.
+
+Once connected, L/R will change the command, and X to confirm.
+
+Note: I HIGHLY recommend turning off the WLAN Power save in your PSP configuration menu, as this seems to really slow and/or cause problems.
+ 
+Much Thanks goes to:
+ 
+ PSPPet (wifi sample src)
+ PSPKrazy (ftpd src)
+ NCFTP/Mike Gleason for some coding and understanding of ftp clients
+ 71M for help and implementation into FileAssistant++
+ Shazz for additional assistance!
+ All those who bust their ass in the ps2dev forums, great job!
+
+
+

@@ -1,0 +1,33 @@
+TODO for Version .99
+
+
+TODO for 1.0
+- Setup FTP Bookmarks/Config file
+- Multiple client/server connections (move status, etc.. to clientconnection for this)
+- Color for readability
+- return PWD
+- Convert Connection Picker to friendly return functions
+- Add Progress bar for transfers
+- Add NOOP command
+- Automated TYPE command
+- Connect Timeout
+- transfer ABORTs
+
+Known Issues for .99:
+ 
+(minor)
+
+- still some known PASV bugs
+- list may show additional/missing file/dir information depending on ftp server
+- ether address error
+- kill threads? (faster exit)
+- correct permissions coming back with additional info in LIST command
+- Split Client/Server statuses (possible time outs when waiting for status)
+- correct input array (check max length)
+- garbled non existant file in LIST sometimes
+ 
+(unable to duplicate or unconfirmed)
+- timeout on connect
+- timeout after USER command sent
+
+

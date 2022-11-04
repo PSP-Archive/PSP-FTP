@@ -1,0 +1,43 @@
+Version .99
+
+** CORE CLIENT INCLUDES **
+- Automated data connection ports
+- Added timeout for commands
+- Added Network Connection Picker
+- Updated to latest PSPSDK
+- Converted to .02 wifi source
+- Added status checking of WLAN Switch
+- Added exit variable, must now call quitFTP() from exit callback;
+- Added LIST command with File Structure return
+- Corrected thread pointer type warnings
+- resolved issue where unable to exitly cleanly after server disconnects client
+- Added PASV mode
+- corrected pointer issues with STOR
+- corrected pointer issues with RETR
+- wasn't closing data ports, fixed
+- sped up timeout check delays
+- sped up retrieve server requests delay
+- fixed hangs when waiting for input, after STOR command
+- fixed delay after LIST command (wasn't closing data port)
+- fixed hang on file does not exist
+- fixed hangs on no permission to STOR
+- fixed attempting to connect to data port when no connection was requested
+- allows anonymous connections
+- allows reconnect to a new ftp with CONN
+- added functions to return transfer size when transferring
+- fixed hangs after using PASV for LIST command
+- fixed PSP shutoff on LIST unable to open data connection
+
+
+** DEBUGGING / SAMPLE CLIENT **
+- Added light text input for debugging
+- Fixed passing debug values from text input to functions
+- Fixed Debug Text color changing issues
+- Changed static info to define for using static info only when debugging
+- Added option of 'Save File To' when using RETR
+- Added additional characters to CHARS_ALL for text input
+- Added change character set for input by pressing []
+- Allow cancelling for text input
+- fixed line numbers
+- added transfer size shown when transferring
+
