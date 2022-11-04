@@ -11,16 +11,11 @@
 #include "nlh.h"
 
 
+//NOTE: kernel mode module flag and kernel mode thread are both required
+PSP_MODULE_INFO("PSP-FTP", 0x1000, 1, 1); /* 0x1000 REQUIRED!!! */
+PSP_MAIN_THREAD_ATTR(0); /* 0 REQUIRED!!! */
+PSP_MAIN_THREAD_STACK_SIZE_KB(32); /* smaller stack for kernel thread */
 
-asm(".global __lib_stub_top");
-asm(".global __lib_stub_bottom");
-
-PSP_MODULE_INFO("FTPC", 0x1000, 1, 1);
-/* Define the main thread's attribute value (optional) */
-PSP_MAIN_THREAD_ATTR(0);
-
-/* Define printf, just to make typing easier */
-//#define printf	pspDebugScreenPrintf
 
 int done = 0;
 
@@ -112,42 +107,13 @@ int AttemptConnect(void) {
 	}
 }
 
-int main(void)
+int 
+ftp_user_thread(void)
 {
+	SceCtrlData pad;
 	int err;
 	
-	// initialize controls
-	SceCtrlData pad;
-	sceCtrlSetSamplingCycle(0);
-	sceCtrlSetSamplingMode(PSP_CTRL_MODE_ANALOG);
-	
-	pspDebugScreenInit();
-	
-	SetupCallbacks();
-	
-	/*
-	if ( ftpGetWLANSwitch() == 0 ) {
-		debugLine("WLAN switch is off");
-	} else {
-		debugLine("WLAN switch is on");
-	}
-	
-	if ( ftpGetWLANPower() == 0 ) {
-		debugLine("WLAN power is off");
-	} else {
-		debugLine("WLAN power is on");
-	}
-	char etherAddr[7];
-	ftpGetEtherAddr(etherAddr);
-	
-	sceKernelDelayThread(7000*1000);
-	debugLine("%s", etherAddr);
-	*/
-	
-	
 	startFTP(&module_info);
-	
-	
 	
 	// get server info from user
 	err = GetInfo();
@@ -340,9 +306,43 @@ int main(void)
 		}
 		sceKernelDelayThread(100 * 1000);
 	}
-	
-	sceKernelExitGame();
 
 	return 0;
+}
+
+int main(void)
+{
+  int user_thid;
+	
+	// initialize controls
+	sceCtrlSetSamplingCycle(0);
+	sceCtrlSetSamplingMode(PSP_CTRL_MODE_ANALOG);
+	
+	pspDebugScreenInit();
+
+  pspDebugScreenPrintf("PSP-FTP v1.0 by liquid8d\n");
+  pspDebugScreenPrintf("Please wait now loading !\n");
+  sceKernelDelayThread(2000000); 
+	
+	SetupCallbacks();
+	
+  if (nlhLoadDrivers(&module_info) != 0) {
+    pspDebugScreenPrintf("unable to load wifi drivers !");
+    return 0;
+  }
+
+  pspDebugScreenPrintf("Launch main thread !\n");
+  sceKernelDelayThread(1000000); 
+
+  user_thid = sceKernelCreateThread( "user_thread", 
+     (SceKernelThreadEntry)ftp_user_thread, 0x8, 256*1024, 
+     PSP_THREAD_ATTR_USER, 0 );
+  if(user_thid >= 0) {
+    sceKernelStartThread(user_thid, 0, 0);
+    sceKernelWaitThreadEnd(user_thid, NULL);
+  }
+
+  sceKernelExitGame();
+  return 0;
 }
 

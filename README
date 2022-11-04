@@ -1,6 +1,12 @@
 PSP FTP Client
 by: LiQuiD8d
 contact me at: liquid8d@hotmail.com
+
+v1.0
+08/06/06 (by Zx-81)
+Fix the DHCP bug and modify the makefile to compile under the latest SDK. 
+
+
 v .99
 10/09/05
  

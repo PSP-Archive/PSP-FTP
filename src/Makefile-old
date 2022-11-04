@@ -4,9 +4,9 @@ PSP_DIR_NAME = FTPC
 TARGET = ftpc
 
 #COMMON
-OBJS=src/main.o src/sutils.o src/ftpclient.o src/debug.o src/_itoa.o
+OBJS=main.o sutils.o ftpclient.o debug.o _itoa.o
 #NET UTILS
-OBJS+=src/loadutil.o src/nlh.o src/stubs.o src/picker.o 
+OBJS+=loadutil.o nlh.o stubs.o picker.o 
 
 LIBS = -lpsppower -lpsputility -lpng -lz -lm -lpspwlan
 

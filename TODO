@@ -1,7 +1,6 @@
 TODO for Version .99
 
-
-TODO for 1.0
+TODO for 1.x
 - Setup FTP Bookmarks/Config file
 - Multiple client/server connections (move status, etc.. to clientconnection for this)
 - Color for readability

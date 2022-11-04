@@ -1,4 +1,14 @@
+#include <pspsdk.h>
+#include <psptypes.h>
+#include <pspkernel.h>
+#include <pspctrl.h>
+#include <pspdisplay.h>
 
+#include <pspiofilemgr.h>
+#include <pspiofilemgr_fcntl.h>
+
+#include <stdio.h>
+#include <string.h>
 
 #define IS_ALPHA(value) (((value)&0xff000000)==0)
 #define	PSP_LINE_SIZE 512   // in u32
